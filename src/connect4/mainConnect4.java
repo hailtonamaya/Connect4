@@ -13,6 +13,7 @@ public class mainConnect4 {
     public static void main(String[] args) {
         jugadores = new ArrayList<>();
         menuInicio.setVisible(true);
+        System.out.println("Hola");
 
     }
 
