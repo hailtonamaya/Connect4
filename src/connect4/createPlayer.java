@@ -43,7 +43,6 @@ public class createPlayer extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         passTxt = new javax.swing.JPasswordField();
-        jFechaNac = new com.toedter.calendar.JCalendar();
         userTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,7 +109,6 @@ public class createPlayer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 330, -1));
-        jPanel1.add(jFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 330, -1));
 
         userTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +144,7 @@ public class createPlayer extends javax.swing.JFrame {
         String pass = passTxt.getText();
         String name = nameTxt.getText();
         Calendar fechaNac = Calendar.getInstance();
-        fechaNac.set(jFechaNac.getCalendar().get(Calendar.YEAR), jFechaNac.getCalendar().get(Calendar.MONTH)+1, jFechaNac.getCalendar().get(Calendar.DAY_OF_MONTH));
+        //fechaNac.set(jFechaNac.getCalendar().get(Calendar.YEAR), jFechaNac.getCalendar().get(Calendar.MONTH)+1, jFechaNac.getCalendar().get(Calendar.DAY_OF_MONTH));
 
         
         if (mainConnect4.jugadores.isEmpty() == false){
@@ -183,7 +181,6 @@ public class createPlayer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createButton;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JCalendar jFechaNac;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
