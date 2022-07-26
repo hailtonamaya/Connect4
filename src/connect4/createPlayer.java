@@ -44,6 +44,9 @@ public class createPlayer extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         passTxt = new javax.swing.JPasswordField();
         userTxt = new javax.swing.JTextField();
+        jDay = new javax.swing.JComboBox<>();
+        jMonth = new javax.swing.JComboBox<>();
+        jYear = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,7 +83,7 @@ public class createPlayer extends javax.swing.JFrame {
                 createButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(createButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 170, 31));
+        jPanel1.add(createButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 170, 31));
 
         jButton3.setBackground(new java.awt.Color(255, 204, 204));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -92,7 +95,7 @@ public class createPlayer extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 170, 31));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 170, 31));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("CONTRASEÑA");
@@ -118,6 +121,13 @@ public class createPlayer extends javax.swing.JFrame {
         });
         jPanel1.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 330, -1));
 
+        jDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel1.add(jDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 50, -1));
+
+        jMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jPanel1.add(jMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 50, -1));
+        jPanel1.add(jYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 80, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,9 +136,7 @@ public class createPlayer extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         pack();
@@ -143,25 +151,45 @@ public class createPlayer extends javax.swing.JFrame {
         String user = userTxt.getText();
         String pass = passTxt.getText();
         String name = nameTxt.getText();
-        Calendar fechaNac = Calendar.getInstance();
-        //fechaNac.set(jFechaNac.getCalendar().get(Calendar.YEAR), jFechaNac.getCalendar().get(Calendar.MONTH)+1, jFechaNac.getCalendar().get(Calendar.DAY_OF_MONTH));
-
+        String year1 = jYear.getText();
+        int year=0;
         
-        if (mainConnect4.jugadores.isEmpty() == false){
-            for (player p: mainConnect4.jugadores){
-                if (p.getUsername().equals(user)){
+        if (!year1.equals(""))
+            year = Integer.parseInt(jYear.getText());
+
+        Calendar fechaNac = Calendar.getInstance();
+        
+        int day = Integer.parseInt(jDay.getSelectedItem().toString());
+        int month = Integer.parseInt(jMonth.getSelectedItem().toString());
+        
+        fechaNac.set(year, month, day);
+        
+        if (user.equals("") || pass.equals("") || name.equals("") || year1.equals("")){
+            JOptionPane.showMessageDialog(null, "Uno o varios de los campos esta vacio", "Hey!", JOptionPane.ERROR_MESSAGE);
+        }else if (mainConnect4.people.isEmpty() == false){
+            int i;
+            for (i = 0 ; i < mainConnect4.people.size(); i++){
+                if (mainConnect4.people.get(i).getUsername().equals(user)){
                     JOptionPane.showMessageDialog(null, "Ya existe un jugador con ese usuario, no se ha creado", "Hey!", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
             }
-        }else{
-                player j = new player(user, pass, name, fechaNac);
-                mainConnect4.jugadores.add(j);
+            if (i >= mainConnect4.people.size()){
+                people j = new people(user, pass, name, fechaNac);
+                mainConnect4.people.add(j);
                 JOptionPane.showMessageDialog(null, "El jugador se ha creado exitosamente");
+                JOptionPane.showMessageDialog(null, "Dia: " + fechaNac.get(Calendar.DAY_OF_MONTH) + "Mes: " + fechaNac.get(Calendar.MONTH) + "Anio: " + fechaNac.get(Calendar.YEAR));
+            }
+            }else{
+                people j = new people(user, pass, name, fechaNac);
+                mainConnect4.people.add(j);
+                JOptionPane.showMessageDialog(null, "El jugador se ha creado exitosamente");
+                JOptionPane.showMessageDialog(null, "Dia: " + fechaNac.get(Calendar.DAY_OF_MONTH) + "Mes: " + fechaNac.get(Calendar.MONTH) + "Anio: " + fechaNac.get(Calendar.YEAR));
         }
         userTxt.setText("");
         passTxt.setText("");
         nameTxt.setText("");
+        jYear.setText("");
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -181,13 +209,16 @@ public class createPlayer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createButton;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jDay;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JComboBox<String> jMonth;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jYear;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JPasswordField passTxt;
     private javax.swing.JTextField userTxt;
