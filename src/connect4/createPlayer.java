@@ -176,13 +176,17 @@ public class createPlayer extends javax.swing.JFrame {
             }
             if (i >= mainConnect4.people.size()){
                 people j = new people(user, pass, name, fechaNac);
+                player p = new player(user, pass, name, fechaNac);
                 mainConnect4.people.add(j);
+                mainConnect4.players.add(p);
                 JOptionPane.showMessageDialog(null, "El jugador se ha creado exitosamente");
                 JOptionPane.showMessageDialog(null, "Dia: " + fechaNac.get(Calendar.DAY_OF_MONTH) + "Mes: " + fechaNac.get(Calendar.MONTH) + "Anio: " + fechaNac.get(Calendar.YEAR));
             }
             }else{
                 people j = new people(user, pass, name, fechaNac);
+                player p = new player(user, pass, name, fechaNac);
                 mainConnect4.people.add(j);
+                mainConnect4.players.add(p);
                 JOptionPane.showMessageDialog(null, "El jugador se ha creado exitosamente");
                 JOptionPane.showMessageDialog(null, "Dia: " + fechaNac.get(Calendar.DAY_OF_MONTH) + "Mes: " + fechaNac.get(Calendar.MONTH) + "Anio: " + fechaNac.get(Calendar.YEAR));
         }

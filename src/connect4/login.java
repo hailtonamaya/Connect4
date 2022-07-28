@@ -101,10 +101,10 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String user = userTxt.getText();
         String pass = passTxt.getText();
-        if (mainConnect4.jugadores.isEmpty() == true){
+        if (mainConnect4.people.isEmpty() == true){
             JOptionPane.showMessageDialog(null, "No se ha creado ningun jugador, favor crear uno", "Hey!", JOptionPane.ERROR_MESSAGE);
         }else{
-            for (player p: mainConnect4.jugadores){
+            for (people p: mainConnect4.people){
                 if (p.getUsername().equals(user) && p.getPassword().equals(pass)){
                     JOptionPane.showMessageDialog(null, "Bienvenido " + p.getUsername());
                     menuPrincipal menuPrin = new menuPrincipal(p);

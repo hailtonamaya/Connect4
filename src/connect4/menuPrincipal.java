@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
  */
 public class menuPrincipal extends javax.swing.JFrame {
 
-    private player jugador;
+    private people jugador;
     
-    public menuPrincipal(player jugador) {
+    public menuPrincipal(people jugador) {
         initComponents();
         setLocationRelativeTo(null);
         this.jugador = jugador;
@@ -111,6 +111,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void playButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButton1ActionPerformed
         // TODO add your handling code here:
+        login2 login2 = new login2(jugador);
+        login2.setVisible(true);
     }//GEN-LAST:event_playButton1ActionPerformed
 
     private void reportsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButton1ActionPerformed

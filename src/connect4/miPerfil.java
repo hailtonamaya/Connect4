@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  */
 public class miPerfil extends javax.swing.JFrame {
 
-    private player jugador;
+    private people jugador;
     
-    public miPerfil(player jugador) {
-        this.jugador = jugador;
-        setLocationRelativeTo(null);
+    public miPerfil(people jugador) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.jugador = jugador;
     }
 
     /**
@@ -88,13 +88,15 @@ public class miPerfil extends javax.swing.JFrame {
 
     private void profileButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButton1ActionPerformed
         // TODO add your handling code here:
+        editarPerfil editarPerfil = new editarPerfil(jugador);
+        editarPerfil.setVisible(true);
     }//GEN-LAST:event_profileButton1ActionPerformed
 
     private void profileButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButton2ActionPerformed
         // TODO add your handling code here:
         int opcion = JOptionPane.showConfirmDialog(null, "Esta seguro que desea elimnar su perfil?", "Elija una opcion", 0);
         if (opcion == 0){
-            mainConnect4.jugadores.remove(jugador);
+            mainConnect4.people.remove(jugador);
             JOptionPane.showMessageDialog(null, "Su usuario se ha removido exitosamente");
             this.dispose();
         }
