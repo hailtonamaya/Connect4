@@ -17,5 +17,5 @@ public class drawCircle extends JLabel {
         circulo.setColor(Color.WHITE);
         circulo.fillOval(0, 0, 84, 84);
     }
-
+    
 }

@@ -4,7 +4,9 @@
  */
 package connect4;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JLabel;
 
 /**
  *
@@ -12,24 +14,28 @@ import java.awt.Graphics;
  */
 public class connect4Game extends javax.swing.JFrame {
 
+    static JLabel LabelCol[];
+
     /**
      * Creates new form connect4Game
      */
     public connect4Game() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.setSize(900, 800);
+        this.setBackground(Color.yellow);
         crearCirculo();
-        
+        GenerarLabels();
     }
-    
-    public void crearCirculo(){
+
+    public void crearCirculo() {
         int x1 = 0;
-        for (int x = 160; x < 860 ; x += 100){
+        for (int x = 100; x < 800; x += 100) {
             int y2 = 0;
-            for (int y = 160; y < 760; y += 100){
+            for (int y = 160; y < 760; y += 100) {
                 drawCircle crear = new drawCircle();
                 mainConnect4.Circulos[x1][y2] = crear;
-                mainConnect4.Circulos[x1][y2].setBounds(x,y,90,90);
+                mainConnect4.Circulos[x1][y2].setBounds(x, y, 92, 92);
                 mainConnect4.Circulos[x1][y2].setText("99");
                 mainConnect4.Circulos[x1][y2].setOpaque(false);
                 mainConnect4.Circulos[x1][y2].setVisible(true);
@@ -39,13 +45,27 @@ public class connect4Game extends javax.swing.JFrame {
             x1++;
         }
     }
-    
- 
+
+    public void GenerarLabels() {
+        LabelCol = new JLabel[7];
+        for (int i = 0; i < 7; i++) {
+            int y = i + 1;
+            JLabel label = new JLabel();
+            LabelCol[i] = label;
+            LabelCol[i].setBounds(50, 50, 50, 50);
+            LabelCol[i].setText("" + y);
+            LabelCol[i].setBackground(Color.red);
+            LabelCol[i].setOpaque(false);
+            LabelCol[i].setVisible(true);
+            this.add(LabelCol[i]);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jColumn1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -56,68 +76,86 @@ public class connect4Game extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 153));
         setPreferredSize(new java.awt.Dimension(1500, 1000));
-        setSize(new java.awt.Dimension(900, 800));
+        setSize(900,800);
 
-        jButton1.setText("jButton1");
+        jColumn1.setText("1");
+        jColumn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jColumn1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton1");
+        jButton2.setText("2");
 
-        jButton3.setText("jButton1");
+        jButton3.setText("3");
 
-        jButton4.setText("jButton1");
+        jButton4.setText("4");
 
-        jButton5.setText("jButton1");
+        jButton5.setText("5");
 
-        jButton6.setText("jButton1");
+        jButton6.setText("6");
 
-        jButton7.setText("jButton1");
+        jButton7.setText("7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addComponent(jColumn1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jColumn1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(732, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jColumn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jColumn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jColumn1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jColumn1;
     // End of variables declaration//GEN-END:variables
 }

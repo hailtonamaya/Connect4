@@ -11,6 +11,14 @@ public class login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    public people searchPerson(String user){
+        for (people p: mainConnect4.people){
+            if(p.getUsername().equals(user))
+                return p;
+        }
+        return null;
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -103,17 +111,17 @@ public class login extends javax.swing.JFrame {
         String pass = passTxt.getText();
         if (mainConnect4.people.isEmpty() == true){
             JOptionPane.showMessageDialog(null, "No se ha creado ningun jugador, favor crear uno", "Hey!", JOptionPane.ERROR_MESSAGE);
-        }else{
-            for (people p: mainConnect4.people){
-                if (p.getUsername().equals(user) && p.getPassword().equals(pass)){
-                    JOptionPane.showMessageDialog(null, "Bienvenido " + p.getUsername());
-                    menuPrincipal menuPrin = new menuPrincipal(p);
-                    menuPrin.setVisible(true);
-                }else {
-                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Hey!", JOptionPane.ERROR_MESSAGE);
-                }
+        }else if (searchPerson(user) != null){
+            people p = searchPerson(user);
+            if (p.getUsername().equals(user) && p.getPassword().equals(pass)){
+                JOptionPane.showMessageDialog(null, "Bienvenido " + p.getUsername());
+                menuPrincipal menuPrin = new menuPrincipal(p);
+                menuPrin.setVisible(true);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Hey!", JOptionPane.ERROR_MESSAGE);
         }
+        
         userTxt.setText("");
         passTxt.setText("");
     }//GEN-LAST:event_loginButtonActionPerformed

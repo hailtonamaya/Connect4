@@ -19,5 +19,4 @@ public class mainConnect4 {
         menuInicio.setVisible(true);
 
     }
-
 }

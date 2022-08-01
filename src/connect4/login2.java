@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author Hailton
  */
-public class login2 extends javax.swing.JFrame {
+public class login2 extends javax.swing.JFrame{
 
     people player1, player2;
     
@@ -18,6 +18,14 @@ public class login2 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.player1 = player1;
+    }
+    
+    public people searchPerson(String user){
+        for (people p: mainConnect4.people){
+            if(p.getUsername().equals(user))
+                return p;
+        }
+        return null;
     }
 
  
@@ -101,27 +109,28 @@ public class login2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String user = userTxt.getText();
         String pass = passTxt.getText();
-
-        for (people p: mainConnect4.people){
-            if (user.equals(player1.getUsername())){
-                JOptionPane.showMessageDialog(null, "No se puede iniciar sesion con el mismo jugador", "Hey!", JOptionPane.ERROR_MESSAGE);
-                int opcion = JOptionPane.showConfirmDialog(null, "Desea intentar de nuevo?", "Elija una opcion", 0);
-                if (opcion == 1)
-                    this.dispose();
-            }else{
+        
+        if (user.equals(player1.getUsername())){
+            JOptionPane.showMessageDialog(null, "No se puede iniciar sesion con el mismo jugador", "Hey!", JOptionPane.ERROR_MESSAGE);
+            int opcion = JOptionPane.showConfirmDialog(null, "Desea intentar de nuevo?", "Elija una opcion", 0);
+            if (opcion == 1)
+                this.dispose();
+        }else {
+            if (searchPerson(user) != null){
+                people p = searchPerson(user);
                 if (p.getUsername().equals(user) && p.getPassword().equals(pass)){
                     JOptionPane.showMessageDialog(null, "Bienvenido " + p.getUsername());
                     player2 = p;
                     connect4Game jugar = new connect4Game();
                     jugar.setVisible(true);
-                }else {
-                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Hey!", JOptionPane.ERROR_MESSAGE);
+                    this.dispose();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Hey!", JOptionPane.ERROR_MESSAGE);
                     int opcion2 = JOptionPane.showConfirmDialog(null, "Desea intentar de nuevo?", "Elija una opcion", 0);
                     if (opcion2 == 1)
-                            this.dispose();
-                }
+                       this.dispose();
             }
-            
         }
         userTxt.setText("");
         passTxt.setText("");
