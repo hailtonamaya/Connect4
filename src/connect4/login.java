@@ -117,6 +117,7 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + p.getUsername());
                 menuPrincipal menuPrin = new menuPrincipal(p);
                 menuPrin.setVisible(true);
+                this.dispose();
             }
         }else{
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Hey!", JOptionPane.ERROR_MESSAGE);
@@ -128,6 +129,8 @@ public class login extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
+        menuInicio inicio = new menuInicio();
+        inicio.setVisible(true);
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -19,6 +19,8 @@ public final class connect4Game extends javax.swing.JFrame {
     static int posicionesY[];
     static int coordenadasX[];
     static int coordenadasY[];
+    static drawCircle1 circulos1[][];
+    static drawCircle2 circulos2[][];
     
     public connect4Game(people player1, people player2) {
         initComponents();
@@ -29,6 +31,8 @@ public final class connect4Game extends javax.swing.JFrame {
         this.setBackground(Color.yellow);
         crearCirculo();
         GenerarButtons();
+        circulos1 = new drawCircle1[7][6];
+        circulos2 = new drawCircle2[7][6];
         if(turno == 1)
             Titulo.setText("Turno de "+player1.getUsername());
         else if (turno == 2)
@@ -70,6 +74,7 @@ public final class connect4Game extends javax.swing.JFrame {
         circulo.setOpaque(false);
         circulo.setVisible(true);
         mainConnect4.Circulos[posX][posY].setVisible(false);
+        circulos1[posX][posY] = circulo;
         this.add(circulo);
     }
     
@@ -81,6 +86,7 @@ public final class connect4Game extends javax.swing.JFrame {
         circulo.setOpaque(false);
         circulo.setVisible(true);
         mainConnect4.Circulos[posX][posY].setVisible(false);
+        circulos2[posX][posY] = circulo;
         this.add(circulo);
     }
 
@@ -111,13 +117,6 @@ public final class connect4Game extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 play(num, turno);
-                if(turno == 1){
-                    turno = 2;
-                    Titulo.setText("Turno de "+player2.getUsername());
-                }else if (turno == 2){
-                    turno = 1;
-                    Titulo.setText("Turno de "+player1.getUsername());
-                }
             }
         };
         return accion;
@@ -136,16 +135,83 @@ public final class connect4Game extends javax.swing.JFrame {
         if(player == 1){
             if(checkColumns(col) == -1)
                 JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
-            else
+            else{
                 circulos1(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
+                if (turno == 1){
+                    turno = 2;
+                    Titulo.setText("Turno de "+player2.getUsername());
+                }else if (turno == 2){
+                    turno = 1;
+                    Titulo.setText("Turno de "+player1.getUsername());
+                }
+            }
         }else if(player == 2){
             if(checkColumns(col) == -1)
                 JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
-            else
+            else{
                 circulos2(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
+                if (turno == 1){
+                    turno = 2;
+                    Titulo.setText("Turno de "+player2.getUsername());
+                }else if (turno == 2){
+                    turno = 1;
+                    Titulo.setText("Turno de "+player1.getUsername());
+                }
+            }
         }
     }
     
+    private int checkWinnerVertical(int player){
+        int contador=0;
+        for (int x=6; x>=0; x--){
+            for (int y=5; y>=0; y--){
+                if(contador==4){
+                    return player; 
+                }else{
+                    if(circulos1[x][y]!=null)
+                       contador++;
+                    else if(circulos1[x][y]==null)
+                       contador=0;
+                }
+            }
+        }
+        return 0;
+    }
+    
+    private int checkWinnerHorizontal(int player){
+        
+        if(player==1){
+            int contador=0;
+            for (int y=5; y>=0; y--){
+                for (int x=6; x>=0; x--){
+                    if(contador==4){
+                        return player; 
+                    }else{
+                        if(circulos1[x][y]!=null)
+                           contador++;
+                        else if(circulos1[x][y]==null)
+                           contador=0;
+                    }
+                }
+            }
+        }else if(player==2){
+            int contador=0;
+            for (int y=5; y>=0; y--){
+                for (int x=6; x>=0; x--){
+                    if(contador==4){
+                        return player; 
+                    }else{
+                        if(circulos2[x][y]!=null)
+                           contador++;
+                        else if(circulos2[x][y]==null)
+                           contador=0;
+                    }
+                }
+            }
+        }
+        
+        return 0;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

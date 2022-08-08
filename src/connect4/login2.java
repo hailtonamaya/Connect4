@@ -106,8 +106,9 @@ public class login2 extends javax.swing.JFrame{
         if (user.equals(player1.getUsername())){
             JOptionPane.showMessageDialog(null, "No se puede iniciar sesion con el mismo jugador", "Hey!", JOptionPane.ERROR_MESSAGE);
             int opcion = JOptionPane.showConfirmDialog(null, "Desea intentar de nuevo?", "Elija una opcion", 0);
-            if (opcion == 1)
+            if (opcion == 1){
                 this.dispose();
+            }
         }else {
             if (searchPerson(user) != null){
                 people p = searchPerson(user);
