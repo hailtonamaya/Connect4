@@ -2,10 +2,12 @@
 package connect4;
 
 import java.awt.Color;
+import java.awt.Event;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import java.awt.event.*;
 
 
 public final class connect4Game extends javax.swing.JFrame {
@@ -16,7 +18,7 @@ public final class connect4Game extends javax.swing.JFrame {
     static int posicionesY[];
     static int coordenadasX[];
     static int coordenadasY[];
-
+    
     public connect4Game() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -91,9 +93,21 @@ public final class connect4Game extends javax.swing.JFrame {
             ButtonCol[i].setOpaque(true);
             ButtonCol[i].setBackground(Color.decode("#ff6666"));
             ButtonCol[i].setVisible(true);
+            ButtonCol[i].addActionListener(accion(i));
             this.add(ButtonCol[i]);
             x+=100;
+            
         }
+    }
+    
+    private ActionListener accion(int num){
+        ActionListener accion = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                play(num);
+            }
+        };
+        return accion;
     }
     
     public int checkColumns(int col){
@@ -106,7 +120,7 @@ public final class connect4Game extends javax.swing.JFrame {
     
     public void play(int col){
         drawCircle circulos = new drawCircle();
-        if(col == 1){
+        if(col == 0){
             circulos1(posicionesX[0],posicionesY[0], coordenadasX[0], coordenadasY[0]);
         }else if(col == 2){
             
