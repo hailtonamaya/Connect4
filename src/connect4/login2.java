@@ -114,7 +114,7 @@ public class login2 extends javax.swing.JFrame{
                 if (p.getUsername().equals(user) && p.getPassword().equals(pass)){
                     JOptionPane.showMessageDialog(null, "Bienvenido " + p.getUsername());
                     player2 = p;
-                    connect4Game jugar = new connect4Game();
+                    connect4Game jugar = new connect4Game(player1, player2);
                     jugar.setVisible(true);
                     this.dispose();
                 }

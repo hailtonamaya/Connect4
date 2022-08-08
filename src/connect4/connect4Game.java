@@ -2,34 +2,40 @@
 package connect4;
 
 import java.awt.Color;
-import java.awt.Event;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 
 public final class connect4Game extends javax.swing.JFrame {
 
-    
-    static JButton ButtonCol[];
+    private people player1, player2;
+    private int turno=1;
+    private static JButton ButtonCol[];
     static int posicionesX[];
     static int posicionesY[];
     static int coordenadasX[];
     static int coordenadasY[];
     
-    public connect4Game() {
+    public connect4Game(people player1, people player2) {
         initComponents();
+        this.player1 = player1;
+        this.player2 = player2;
         this.setLocationRelativeTo(null);
         this.setSize(900, 800);
         this.setBackground(Color.yellow);
         crearCirculo();
         GenerarButtons();
-        play(1);
+        if(turno == 1)
+            Titulo.setText("Turno de "+player1.getUsername());
+        else if (turno == 2)
+            Titulo.setText("Turno de "+player2.getUsername());
     }
 
-    public void crearCirculo() {
+    private void crearCirculo() {
         posicionesX = new int[7];
         posicionesY = new int[6];
         coordenadasX = new int[7];
@@ -56,7 +62,7 @@ public final class connect4Game extends javax.swing.JFrame {
         }
     }
     
-    public void circulos1(int posX, int posY, int corX, int corY){
+    private void circulos1(int posX, int posY, int corX, int corY){
         drawCircle1 crear = new drawCircle1();
         drawCircle1 circulo = crear;
         circulo.setBounds(corX, corY, 130, 130);
@@ -67,7 +73,7 @@ public final class connect4Game extends javax.swing.JFrame {
         this.add(circulo);
     }
     
-    public void circulos2(int posX, int posY, int corX, int corY){
+    private void circulos2(int posX, int posY, int corX, int corY){
         drawCircle2 crear = new drawCircle2();
         drawCircle2 circulo = crear;
         circulo.setBounds(corX, corY, 130, 130);
@@ -78,7 +84,7 @@ public final class connect4Game extends javax.swing.JFrame {
         this.add(circulo);
     }
 
-    public void GenerarButtons() {
+    private void GenerarButtons() {
         ButtonCol = new JButton[7];
         int x = 120;
         for (int i = 0; i < 7; i++) {
@@ -104,26 +110,39 @@ public final class connect4Game extends javax.swing.JFrame {
         ActionListener accion = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                play(num);
+                play(num, turno);
+                if(turno == 1){
+                    turno = 2;
+                    Titulo.setText("Turno de "+player2.getUsername());
+                }else if (turno == 2){
+                    turno = 1;
+                    Titulo.setText("Turno de "+player1.getUsername());
+                }
             }
         };
         return accion;
     }
     
-    public int checkColumns(int col){
-        for (int i=6; i >= 0; i--){
-            if(mainConnect4.Circulos[1][i].isVisible())
+    private int checkColumns(int col){
+        for (int i=5; i >= 0; i--){
+            if(mainConnect4.Circulos[col][i].isVisible())
                 return i;
         }
         return -1;
     }
     
-    public void play(int col){
+    private void play(int col, int player){
         drawCircle circulos = new drawCircle();
-        if(col == 0){
-            circulos1(posicionesX[0],posicionesY[0], coordenadasX[0], coordenadasY[0]);
-        }else if(col == 2){
-            
+        if(player == 1){
+            if(checkColumns(col) == -1)
+                JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
+            else
+                circulos1(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
+        }else if(player == 2){
+            if(checkColumns(col) == -1)
+                JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
+            else
+                circulos2(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
         }
     }
     
@@ -133,7 +152,7 @@ public final class connect4Game extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        Titulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 153));
@@ -143,11 +162,11 @@ public final class connect4Game extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("JUGAR CONNECT4");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 727, -1));
+        Titulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(255, 255, 255));
+        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Titulo.setText("JUGAR CONNECT4");
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 727, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,7 +187,7 @@ public final class connect4Game extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel Titulo;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
