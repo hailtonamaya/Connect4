@@ -137,6 +137,16 @@ public final class connect4Game extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
             else{
                 circulos1(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
+                if (checkWinnerVertical(turno)==1)
+                    JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
+                else if(checkWinnerVertical(turno)==2)
+                    JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
+                if (checkWinnerHorizontal(turno)==1)
+                    JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
+                else if(checkWinnerHorizontal(turno)==2)
+                    JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
+                if (checkWinnerDiagonal(turno)==1)
+                    JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -150,6 +160,16 @@ public final class connect4Game extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
             else{
                 circulos2(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
+                if (checkWinnerVertical(turno)==1)
+                    JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
+                else if(checkWinnerVertical(turno)==2)
+                    JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
+                if (checkWinnerHorizontal(turno)==1)
+                    JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
+                else if(checkWinnerHorizontal(turno)==2)
+                    JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
+                if (checkWinnerDiagonal(turno)==1)
+                    JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -162,16 +182,32 @@ public final class connect4Game extends javax.swing.JFrame {
     }
     
     private int checkWinnerVertical(int player){
-        int contador=0;
-        for (int x=6; x>=0; x--){
-            for (int y=5; y>=0; y--){
-                if(contador==4){
-                    return player; 
-                }else{
-                    if(circulos1[x][y]!=null)
-                       contador++;
-                    else if(circulos1[x][y]==null)
-                       contador=0;
+        if (player==1){
+            int contador=0;
+            for (int x=6; x>=0; x--){
+                for (int y=5; y>=0; y--){
+                    if(contador==4){
+                        return player; 
+                    }else{
+                        if(circulos1[x][y]!=null)
+                           contador++;
+                        else if(circulos1[x][y]==null)
+                           contador=0;
+                    }
+                }
+            }
+        }else if(player==2){
+            int contador=0;
+            for (int x=6; x>=0; x--){
+                for (int y=5; y>=0; y--){
+                    if(contador==4){
+                        return player; 
+                    }else{
+                        if(circulos2[x][y]!=null)
+                           contador++;
+                        else if(circulos2[x][y]==null)
+                           contador=0;
+                    }
                 }
             }
         }
@@ -210,6 +246,23 @@ public final class connect4Game extends javax.swing.JFrame {
             }
         }
         
+        return 0;
+    }
+    
+    private int checkWinnerDiagonal(int player){
+        int contador=0;
+        int x=0;
+        for (int y=5; y>=0; y--){
+            if(x==7)
+                x=0;
+            if(contador==4)
+                return player;
+            if(circulos1[x][y]!=null)
+                contador++;
+            if(circulos1[x][y]==null)
+                contador=0;
+            x++;
+        }
         return 0;
     }
 
