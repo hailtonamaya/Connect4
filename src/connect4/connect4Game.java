@@ -149,6 +149,8 @@ public final class connect4Game extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
                 else if (checkWinnerDiagonal(turno)==2)
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
+                if(checkColumns(0)==-1 && checkColumns(1)==-1 && checkColumns(3)==-1 && checkColumns(4)==-1 && checkColumns(5)==-1 && checkColumns(6)==-1)
+                    JOptionPane.showMessageDialog(null, "Se ha empatado");
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -174,6 +176,8 @@ public final class connect4Game extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
                 else if (checkWinnerDiagonal(turno)==2)
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
+                if(checkColumns(0)==-1 && checkColumns(1)==-1 && checkColumns(3)==-1 && checkColumns(4)==-1 && checkColumns(5)==-1 && checkColumns(6)==-1)
+                    JOptionPane.showMessageDialog(null, "Se ha empatado");
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -327,6 +331,7 @@ public final class connect4Game extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 153));
@@ -342,6 +347,17 @@ public final class connect4Game extends javax.swing.JFrame {
         Titulo.setText("JUGAR CONNECT4");
         jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 727, -1));
 
+        jButton3.setBackground(new java.awt.Color(255, 204, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setText("RETIRARSE");
+        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -349,19 +365,33 @@ public final class connect4Game extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(969, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(923, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Esta seguro que desea retirarse del juego?", "Elija una opcion", 0);
+        if (opcion == 0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

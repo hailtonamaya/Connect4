@@ -163,16 +163,12 @@ public class createPlayer extends javax.swing.JFrame {
             }
             if (i >= mainConnect4.people.size()){
                 people j = new people(user, pass, name, fechaNac);
-                player p = new player(user, pass, name, fechaNac);
                 mainConnect4.people.add(j);
-                mainConnect4.players.add(p);
                 JOptionPane.showMessageDialog(null, "El jugador se ha creado exitosamente");
             }
             }else{
                 people j = new people(user, pass, name, fechaNac);
-                player p = new player(user, pass, name, fechaNac);
                 mainConnect4.people.add(j);
-                mainConnect4.players.add(p);
                 JOptionPane.showMessageDialog(null, "El jugador se ha creado exitosamente");
         }
         userTxt.setText("");

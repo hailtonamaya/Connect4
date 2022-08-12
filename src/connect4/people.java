@@ -6,7 +6,8 @@ import java.util.Calendar;
 
 public class people {
     private String username, password, nombreCompleto;
-    private Calendar fechaNac; 
+    private Calendar fechaNac;
+    private int puntos;
     private ArrayList<String> lastGames;
     
    
@@ -15,6 +16,7 @@ public class people {
         this.password = password;
         this.nombreCompleto = name;
         this.fechaNac = fechaNac;
+        this.puntos=0;
         lastGames = new ArrayList<>();
     }
     
@@ -56,11 +58,9 @@ public class people {
         this.password = password;
     }
 
-
-    
-    public void print(){
-        System.out.println("Usuario: " + getUsername() +
-                "\nContraseña: " + getPassword());
+    @Override
+    public String toString(){
+        return nombreCompleto + " - " + username + " - " + puntos;
     }
     
 
