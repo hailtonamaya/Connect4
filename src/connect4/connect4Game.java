@@ -131,7 +131,7 @@ public final class connect4Game extends javax.swing.JFrame {
     }
     
     private void play(int col, int player){
-        drawCircle circulos = new drawCircle();
+        //drawCircle circulos = new drawCircle();
         if(player == 1){
             if(checkColumns(col) == -1)
                 JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
@@ -147,6 +147,8 @@ public final class connect4Game extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
                 if (checkWinnerDiagonal(turno)==1)
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
+                else if (checkWinnerDiagonal(turno)==2)
+                    JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -168,8 +170,10 @@ public final class connect4Game extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
                 else if(checkWinnerHorizontal(turno)==2)
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
-                if (checkWinnerDiagonal(turno)==1)
+                 if (checkWinnerDiagonal(turno)==1)
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
+                else if (checkWinnerDiagonal(turno)==2)
+                    JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -250,18 +254,69 @@ public final class connect4Game extends javax.swing.JFrame {
     }
     
     private int checkWinnerDiagonal(int player){
-        int contador=0;
-        int x=0;
-        for (int y=5; y>=0; y--){
-            if(x==7)
-                x=0;
-            if(contador==4)
-                return player;
-            if(circulos1[x][y]!=null)
-                contador++;
-            if(circulos1[x][y]==null)
-                contador=0;
-            x++;
+        
+        for (int i=0; i<=6; i++){
+            int x=i;
+            int contador=0;
+            for (int y=5; y>=0; y--){
+                if(x==7)
+                    x=0;
+                if(contador==4)
+                    return player;
+                if(circulos1[x][y]!=null)
+                    contador++;
+                if(circulos1[x][y]==null)
+                    contador=0;
+                x++;
+            }
+        }
+        
+        for (int i=5; i>=0; i--){
+            int y=i;
+            int contador=0;
+            for (int x=0; x<7; x++){
+                if(y==-1)
+                    y=0;
+                if(contador==4)
+                    return player;
+                if(circulos1[x][y]!=null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador++;
+                if(circulos1[x][y]==null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador=0;
+                y--;
+            }
+        }
+        
+        for (int i=6; i>=0; i--){
+            int x=i;
+            int contador=0;
+            for (int y=5; y>=0; y--){
+                if(x==-1)
+                    x=6;
+                if(contador==4)
+                    return player;
+                if(circulos1[x][y]!=null)
+                    contador++;
+                if(circulos1[x][y]==null)
+                    contador=0;
+                x--;
+            }
+        }
+        
+        for (int i=5; i>=0; i--){
+            int y=i;
+            int contador=0;
+            for (int x=6; x>=0; x--){
+                if(y==-1)
+                    y=0;
+                if(contador==4)
+                    return player;
+                if(circulos1[x][y]!=null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador++;
+                if(circulos1[x][y]==null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador=0;
+                y--;
+            }
         }
         return 0;
     }

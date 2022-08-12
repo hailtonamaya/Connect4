@@ -1,11 +1,13 @@
 
 package connect4;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class people {
     private String username, password, nombreCompleto;
     private Calendar fechaNac; 
+    private ArrayList<String> lastGames;
     
    
     public people(String username, String password, String name, Calendar fechaNac){
@@ -13,7 +15,12 @@ public class people {
         this.password = password;
         this.nombreCompleto = name;
         this.fechaNac = fechaNac;
+        lastGames = new ArrayList<>();
     }
+    
+    public ArrayList getlastGames(){
+        return lastGames;
+    }        
     
     public String getNombreCompleto(){
         return nombreCompleto;
