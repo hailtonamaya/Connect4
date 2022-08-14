@@ -75,8 +75,25 @@ public class people {
         lastGames.add(message);
     }
 
+    private void organizeGames(){
+        for (int i=0; i<lastGames.size(); i++){
+            for (int y=0; y<lastGames.size()-1; y++){
+                String posAct1 = lastGames.get(y);
+                String posSig1 = lastGames.get(y+1);
+                Calendar posAct = dateLastGames.get(y);
+                Calendar posSig = dateLastGames.get(y+1);
+                if(posSig.after(posAct)){
+                   lastGames.set(y, posSig1);
+                   lastGames.set(y+1, posAct1);
+                   dateLastGames.set(y, posSig);
+                   dateLastGames.set(y+1, posAct);
+                }
+            }
+        }
+    }
+    
     public String printGames(){
-        
+        organizeGames();
         String message = toString() + "\n";
         for(int i=0; i<lastGames.size();i++){
             Calendar fecha = dateLastGames.get(i);
