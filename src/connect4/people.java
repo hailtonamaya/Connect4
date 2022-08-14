@@ -42,6 +42,9 @@ public class people {
         return password;
     }
 
+    public int getPuntos(){
+        return puntos;
+    }
 
     public void setNombreCompleto(String name){
         this.nombreCompleto=name;

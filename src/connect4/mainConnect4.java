@@ -8,12 +8,14 @@ import java.util.ArrayList;
 public class mainConnect4 {
     
     static ArrayList<people> people;
+    static ArrayList<people> ranking;
     static drawCircle Circulos[][];
     static menuInicio menuInicio = new menuInicio();
     
     public static void main(String[] args) {
         people = new ArrayList<>();
         Circulos = new drawCircle[7][6];
+        ranking = new ArrayList<>();
         menuInicio.setVisible(true);
 
     }

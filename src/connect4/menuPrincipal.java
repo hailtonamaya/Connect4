@@ -95,6 +95,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        menuInicio menuInicio = new menuInicio();
+        menuInicio.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void playButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButton1ActionPerformed

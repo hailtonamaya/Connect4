@@ -87,6 +87,8 @@ public class miPerfil extends javax.swing.JFrame {
             mainConnect4.people.remove(jugador);
             JOptionPane.showMessageDialog(null, "Su usuario se ha removido exitosamente");
             this.dispose();
+            menuInicio menu = new menuInicio();
+            menu.setVisible(true);
         }
          
     }//GEN-LAST:event_profileButton2ActionPerformed

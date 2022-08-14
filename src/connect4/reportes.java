@@ -10,6 +10,41 @@ public class reportes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.player1 = player1;
     }
+    
+    private void organizeRanking(){
+        mainConnect4.ranking.clear();
+        fillRanking(0);
+        for (int i=0; i<mainConnect4.ranking.size(); i++){
+            for (int y=0; y<mainConnect4.ranking.size()-1; y++){
+                people posAct = mainConnect4.ranking.get(y);
+                people posSig = mainConnect4.ranking.get(y+1);
+                if(posSig.getPuntos()>posAct.getPuntos()){
+                   mainConnect4.ranking.set(y, posSig);
+                   mainConnect4.ranking.set(y+1, posAct);
+                }
+            }
+        }
+        
+    }
+    
+    private String setRanking(){
+        organizeRanking();
+        String message="";
+        int contador = 1;
+        for(people p:mainConnect4.ranking){
+            message+= contador + ".- "+p.getNombreCompleto()+" - "+p.getUsername()+" - "+p.getPuntos()+"\n";
+            contador++;
+        }
+        return message;
+    }
+    
+    private void fillRanking(int pos){
+        if(pos<mainConnect4.people.size()){
+            mainConnect4.ranking.add(mainConnect4.people.get(pos));
+            fillRanking(pos+1);
+        }
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -109,6 +144,7 @@ public class reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_profileButton4ActionPerformed
 
     private void profileButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButton5ActionPerformed
+         JOptionPane.showMessageDialog(null, setRanking());
     }//GEN-LAST:event_profileButton5ActionPerformed
 
     
