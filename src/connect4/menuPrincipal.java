@@ -105,6 +105,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void reportsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButton1ActionPerformed
         // TODO add your handling code here:
+        reportes reportes = new reportes(jugador);
+        reportes.setVisible(true);
     }//GEN-LAST:event_reportsButton1ActionPerformed
 
     private void profileButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButton1ActionPerformed

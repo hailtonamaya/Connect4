@@ -9,6 +9,7 @@ public class people {
     private Calendar fechaNac;
     private int puntos;
     private ArrayList<String> lastGames;
+    private ArrayList<Calendar> dateLastGames;
     
    
     public people(String username, String password, String name, Calendar fechaNac){
@@ -18,6 +19,7 @@ public class people {
         this.fechaNac = fechaNac;
         this.puntos=0;
         lastGames = new ArrayList<>();
+        dateLastGames = new ArrayList<>();
     }
     
     public ArrayList getlastGames(){
@@ -57,7 +59,30 @@ public class people {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public void sumarPuntos(int puntos){
+        this.puntos += puntos;
+    }
+    
+    public void addDate(Calendar date){
+        dateLastGames.add(date);
+    }
+    
+    public void addMessage (String message){
+        lastGames.add(message);
+    }
 
+    public String printGames(){
+        
+        String message = toString() + "\n";
+        for(int i=0; i<lastGames.size();i++){
+            Calendar fecha = dateLastGames.get(i);
+            message += (i+1) + ".- " + fecha.getTime() + " " + lastGames.get(i);
+            message += "\n===============================================\n";
+        }
+        return message;
+    }
+    
     @Override
     public String toString(){
         return nombreCompleto + " - " + username + " - " + puntos;

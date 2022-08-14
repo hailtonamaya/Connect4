@@ -7,6 +7,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.event.*;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 
@@ -131,26 +132,60 @@ public final class connect4Game extends javax.swing.JFrame {
     }
     
     private void play(int col, int player){
-        //drawCircle circulos = new drawCircle();
         if(player == 1){
             if(checkColumns(col) == -1)
                 JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
             else{
                 circulos1(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
-                if (checkWinnerVertical(turno)==1)
+                if (checkWinnerVertical(turno)==1){
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
-                else if(checkWinnerVertical(turno)==2)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Se le gano a " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player1.sumarPuntos(3);
+                    this.dispose();
+                }else if(checkWinnerVertical(turno)==2){
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
-                if (checkWinnerHorizontal(turno)==1)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Perdi ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player2.sumarPuntos(3);
+                    this.dispose();
+                }if (checkWinnerHorizontal(turno)==1){
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
-                else if(checkWinnerHorizontal(turno)==2)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Se le gano a " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player1.sumarPuntos(3);
+                    this.dispose();
+                }else if(checkWinnerHorizontal(turno)==2){
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
-                if (checkWinnerDiagonal(turno)==1)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Perdi ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player2.sumarPuntos(3);
+                    this.dispose();
+                }if (checkWinnerDiagonal(turno)==1){
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
-                else if (checkWinnerDiagonal(turno)==2)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Se le gano a " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player1.sumarPuntos(3);
+                    this.dispose();
+                }else if (checkWinnerDiagonal(turno)==2){
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
-                if(checkColumns(0)==-1 && checkColumns(1)==-1 && checkColumns(3)==-1 && checkColumns(4)==-1 && checkColumns(5)==-1 && checkColumns(6)==-1)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Perdi ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player1.sumarPuntos(3);
+                    this.dispose();
+                }if(checkColumns(0)==-1 && checkColumns(1)==-1 && checkColumns(3)==-1 && checkColumns(4)==-1 && checkColumns(5)==-1 && checkColumns(6)==-1){
                     JOptionPane.showMessageDialog(null, "Se ha empatado");
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Hubo un empate ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    this.dispose();
+                }
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -164,20 +199,55 @@ public final class connect4Game extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Esa columna ya esta llena");
             else{
                 circulos2(col,checkColumns(col), coordenadasX[col], coordenadasY[checkColumns(col)]);
-                if (checkWinnerVertical(turno)==1)
+                if (checkWinnerVertical(turno)==1){
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
-                else if(checkWinnerVertical(turno)==2)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Se le gano a " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player1.sumarPuntos(3);
+                    this.dispose();
+                }else if(checkWinnerVertical(turno)==2){
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
-                if (checkWinnerHorizontal(turno)==1)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Perdi ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player2.sumarPuntos(3);
+                    this.dispose();
+                }if (checkWinnerHorizontal(turno)==1){
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
-                else if(checkWinnerHorizontal(turno)==2)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Se le gano a " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player1.sumarPuntos(3);
+                    this.dispose();
+                }else if(checkWinnerHorizontal(turno)==2){
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
-                 if (checkWinnerDiagonal(turno)==1)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Perdi ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player2.sumarPuntos(3);
+                    this.dispose();
+                }if (checkWinnerDiagonal(turno)==1){
                     JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado");
-                else if (checkWinnerDiagonal(turno)==2)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Se le gano a " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player1.sumarPuntos(3);
+                    this.dispose();
+                }else if (checkWinnerDiagonal(turno)==2){
                     JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado");
-                if(checkColumns(0)==-1 && checkColumns(1)==-1 && checkColumns(3)==-1 && checkColumns(4)==-1 && checkColumns(5)==-1 && checkColumns(6)==-1)
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Perdi ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    player2.sumarPuntos(3);
+                    this.dispose();
+                }if(checkColumns(0)==-1 && checkColumns(1)==-1 && checkColumns(3)==-1 && checkColumns(4)==-1 && checkColumns(5)==-1 && checkColumns(6)==-1){
                     JOptionPane.showMessageDialog(null, "Se ha empatado");
+                    Calendar fechaActual = Calendar.getInstance();
+                    player1.addMessage("Hubo un empate ante " + player2.getUsername());
+                    player1.addDate(fechaActual);
+                    this.dispose();
+                }
                 if (turno == 1){
                     turno = 2;
                     Titulo.setText("Turno de "+player2.getUsername());
@@ -258,7 +328,7 @@ public final class connect4Game extends javax.swing.JFrame {
     }
     
     private int checkWinnerDiagonal(int player){
-        
+        if (player ==1){
         for (int i=0; i<=6; i++){
             int x=i;
             int contador=0;
@@ -321,6 +391,71 @@ public final class connect4Game extends javax.swing.JFrame {
                     contador=0;
                 y--;
             }
+        }
+        }else if(turno == 2){
+        for (int i=0; i<=6; i++){
+            int x=i;
+            int contador=0;
+            for (int y=5; y>=0; y--){
+                if(x==7)
+                    x=0;
+                if(contador==4)
+                    return player;
+                if(circulos2[x][y]!=null)
+                    contador++;
+                if(circulos2[x][y]==null)
+                    contador=0;
+                x++;
+            }
+        }
+        
+        for (int i=5; i>=0; i--){
+            int y=i;
+            int contador=0;
+            for (int x=0; x<7; x++){
+                if(y==-1)
+                    y=0;
+                if(contador==4)
+                    return player;
+                if(circulos2[x][y]!=null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador++;
+                if(circulos2[x][y]==null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador=0;
+                y--;
+            }
+        }
+        
+        for (int i=6; i>=0; i--){
+            int x=i;
+            int contador=0;
+            for (int y=5; y>=0; y--){
+                if(x==-1)
+                    x=6;
+                if(contador==4)
+                    return player;
+                if(circulos2[x][y]!=null)
+                    contador++;
+                if(circulos2[x][y]==null)
+                    contador=0;
+                x--;
+            }
+        }
+        
+        for (int i=5; i>=0; i--){
+            int y=i;
+            int contador=0;
+            for (int x=6; x>=0; x--){
+                if(y==-1)
+                    y=0;
+                if(contador==4)
+                    return player;
+                if(circulos2[x][y]!=null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador++;
+                if(circulos2[x][y]==null && y<=circulos1.length && x<=circulos1[0].length)
+                    contador=0;
+                y--;
+            }
+        } 
         }
         return 0;
     }
@@ -385,6 +520,17 @@ public final class connect4Game extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null, "Esta seguro que desea retirarse del juego?", "Elija una opcion", 0);
         if (opcion == 0){
+            if (turno == 1){
+                Calendar fechaActual = Calendar.getInstance();
+                player1.addMessage("Me retire ante " + player2.getUsername());
+                player1.addDate(fechaActual);
+                player2.sumarPuntos(3);
+            }else if (turno == 2){
+                Calendar fechaActual = Calendar.getInstance();
+                player1.addMessage(player2.getUsername() + " se retiro del juego");
+                player1.addDate(fechaActual);
+                player1.sumarPuntos(3);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
